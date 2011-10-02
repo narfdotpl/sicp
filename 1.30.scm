@@ -5,6 +5,9 @@
 ; 2011-10-01
 
 
+(load "common.scm")
+
+
 (define (sum start end func next)
 
   (define (iter x result)
@@ -15,8 +18,5 @@
 
   (iter start 0))
 
-
-(define (inc n)
-  (+ n 1))
 
 (display (sum 1 5 square inc))(newline)

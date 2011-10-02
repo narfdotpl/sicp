@@ -5,6 +5,9 @@
 ; 2011-10-01
 
 
+(load "common.scm")
+
+
 (define (accumulate-iter combine null-value start end func next)
 
   (define (iter x result)
@@ -35,12 +38,6 @@
 
 (define (product start end func next)
   (accumulate * 1.0 start end func next))
-
-(define (identity x)
-  x)
-
-(define (inc n)
-  (+ n 1))
 
 (define (factorial n)
   (if (= n 0)

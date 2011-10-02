@@ -5,8 +5,10 @@
 ; 2011-10-02
 
 
+(load "common.scm")
+
+
 (define (compose f g)
   (lambda (x) (f (g x))))
 
-(define (inc x) (+ x 1))
 (display ((compose square inc) 6))(newline)

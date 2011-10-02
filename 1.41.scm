@@ -5,9 +5,11 @@
 ; 2011-10-02
 
 
+(load "common.scm")
+
+
 (define (double f)
   (lambda (x) (f (f x))))
 
 (define d double)
-(define (inc x) (+ x 1))
 (display (((d (d d)) inc) 5))(newline)  ; 21

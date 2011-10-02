@@ -5,6 +5,9 @@
 ; 2011-10-01
 
 
+(load "common.scm")
+
+
 (define (filtered-accumulate combine null-value filtered? start end func next)
 
   (define (iter x result)
@@ -17,9 +20,6 @@
 
   (iter start null-value))
 
-
-(define (identity x) x)
-(define (inc n) (+ n 1))
 
 (define (1.33b n)
   (filtered-accumulate * 1.0

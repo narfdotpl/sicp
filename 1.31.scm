@@ -5,6 +5,9 @@
 ; 2011-10-01
 
 
+(load "common.scm")
+
+
 (define (product-iter start end func next)
 
   (define (iter x result)
@@ -29,12 +32,6 @@
 
 (define product product-iter)
 ; (define product product-rec)
-
-(define (identity x)
-  x)
-
-(define (inc n)
-  (+ n 1))
 
 (define (factorial n)
   (if (= n 0)
