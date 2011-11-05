@@ -36,27 +36,21 @@
   (cond ((=number? a1 0) a2)
         ((=number? a2 0) a1)
         ((and (number? a1) (number? a2)) (+ a1 a2))
-        (else (list '+ a1 a2))))
+        (else (make-exp '+ a1 a2))))
 
 (define (make-product m1 m2)
   (cond ((or (=number? m1 0) (=number? m2 0)) 0)
         ((=number? m1 1) m2)
         ((=number? m2 1) m1)
         ((and (number? m1) (number? m2)) (* m1 m2))
-        (else (list '* m1 m2))))
+        (else (make-exp '* m1 m2))))
 
-(define (sum? x)
-  (and (pair? x) (eq? (car x) '+)))
-
+(define (sum? x) (is-exp? '+ x))
 (define (addend s) (cadr s))
-
 (define (augend s) (caddr s))
 
-(define (product? x)
-  (and (pair? x) (eq? (car x) '*)))
-
+(define (product? x) (is-exp? '* x))
 (define (multiplier p) (cadr p))
-
 (define (multiplicand p) (caddr p))
 
 (define (=number? exp num)
@@ -67,16 +61,25 @@
 ;  exponentiation
 ;------------------
 
-(define (exponentiation? x)
-  (and (pair? x) (eq? (car x) '**)))
-
+(define (exponentiation? x) (is-exp? '** x))
 (define (base x) (cadr x))
 (define (exponent x) (caddr x))
 
 (define (make-exponentiation u n)
   (cond ((= n 0) 1)
         ((= n 1) u)
-        (else (list '** u n))))
+        (else (make-exp '** u n))))
+
+
+;-------------------------
+;  make/check expression
+;-------------------------
+
+(define (make-exp op a1 a2)
+  (list op a1 a2))
+
+(define (is-exp? op x)
+  (and (pair? x) (eq? (car x) op)))
 
 
 ;--------
